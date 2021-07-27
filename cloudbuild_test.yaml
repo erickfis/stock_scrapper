@@ -1,10 +1,4 @@
 steps:
-  # Install dependencies
-  - name: python
-    dir: 'code/stock_scrapper'
-    entrypoint: pip
-    args: ["install", "-r", "requirements.txt", "--user"]
-
   # Run unit tests
   - name: python
     dir: 'code/stock_scrapper/'
