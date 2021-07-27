@@ -1,16 +1,4 @@
 steps:
-  # Install dependencies
-  - name: python
-    dir: 'code/stock_scrapper'
-    entrypoint: pip
-    args: ["install", "-r", "requirements_test.txt", "--user"]
-
-  # Run unit tests
-  - name: python
-    dir: 'code/stock_scrapper/'
-    entrypoint: python
-    args: ["-m", "tox"]
-
   # build
   - name: gcr.io/cloud-builders/docker
     args:
