@@ -10,7 +10,6 @@ steps:
     dir: 'code/stock_scrapper/'
     entrypoint: python
     args: ["-m", "tox"]
-    # , "--junitxml=${SHORT_SHA}_test_log.xml"]
 
   # build
   - name: gcr.io/cloud-builders/docker
