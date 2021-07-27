@@ -8,8 +8,9 @@ steps:
   # Run unit tests
   - name: python
     dir: 'code/stock_scrapper/'
-    entrypoint: tox
-  # args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
+    entrypoint: python
+    args: ["-m", "tox"]
+    # , "--junitxml=${SHORT_SHA}_test_log.xml"]
 
 # # Docker Build
 # - name: 'gcr.io/cloud-builders/docker'
