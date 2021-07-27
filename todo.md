@@ -5,4 +5,4 @@
 
 docker build -t sscrapper . -f Dockerfile.prod
 docker run -it sscrapper bash
-docker run --name scraper-container -p 80:80 sscrapper
+docker run --name scrapper-c -p 8000:8000 sscrapper
