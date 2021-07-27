@@ -14,4 +14,4 @@ EXPOSE 8000
 COPY stock_scrapper/gunicorn-config.py .
 
 # container startup cmd
-CMD exec gunicorn main:app -c gunicorn-config.py
+CMD gunicorn --bind=0.0.0.0:8000 -w 4 -k uvicorn.workers.UvicornWorker main:app
