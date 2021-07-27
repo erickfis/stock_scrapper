@@ -1,0 +1,13 @@
+# base image
+FROM python:3.9-slim-buster
+
+# install requirements
+WORKDIR /home/stock_scrapper/
+COPY stock_scrapper/requirements.txt .
+RUN pip3 install -r requirements.txt
+
+# cp app files
+COPY stock_scrapper/ .
+
+# container startup cmd
+CMD ["tox", "-e", "test"]

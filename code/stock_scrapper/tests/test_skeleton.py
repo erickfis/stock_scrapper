@@ -1,25 +1,17 @@
-import pytest
-
-from stock_scrapper.skeleton import fib, main
+from dummy.dummy_app import process_data
 
 __author__ = "Erick Anastacio"
 __copyright__ = "Erick Anastacio"
 __license__ = "MIT"
 
 
-def test_fib():
-    """API Tests"""
-    assert fib(1) == 1
-    assert fib(2) == 1
-    assert fib(7) == 13
-    with pytest.raises(AssertionError):
-        fib(-10)
+def test_processor():
+    data = ['str01', 'str02']
+    results = process_data(data)
+    assert isinstance(results, dict)
 
-
-def test_main(capsys):
-    """CLI Tests"""
-    # capsys is a pytest fixture that allows asserts agains stdout/stderr
-    # https://docs.pytest.org/en/stable/capture.html
-    main(["7"])
-    captured = capsys.readouterr()
-    assert "The 7-th Fibonacci number is 13" in captured.out
+# 
+# def test_processor_error():
+#     data = ['str01', 'str02']
+#     results = process_data(data)
+#     assert isinstance(results, list)
