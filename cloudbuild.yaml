@@ -1,0 +1,23 @@
+steps:
+  # Install dependencies
+  - name: python
+    dir: 'code/stock_scrapper'
+    entrypoint: pip
+    args: ["install", "-r", "requirements.txt", "--user"]
+
+# Run unit tests
+- name: python
+  dir: 'code/stock_scrapper/'
+  entrypoint: tox
+  # args: ["-m", "pytest", "--junitxml=${SHORT_SHA}_test_log.xml"]
+
+# # Docker Build
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['build', '-t',
+#          'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/sscrapper:$SHORT_SHA',
+#          '.', '-f', 'Dockerfile.prod'
+#          ]
+#
+# # Docker push to Google Artifact Registry
+# - name: 'gcr.io/cloud-builders/docker'
+#   args: ['push',  'us-central1-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/sscrapper:$SHORT_SHA']

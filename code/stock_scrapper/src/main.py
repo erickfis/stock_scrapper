@@ -1,7 +1,7 @@
 """The main module."""
 
 from fastapi import FastAPI
-from dummy.dummy_app import process_data
+from stock_scrapper.dummy.dummy_app import process_data
 from pydantic import BaseModel
 
 
