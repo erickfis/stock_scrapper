@@ -2,6 +2,6 @@
 
 import os
 
-timeout = 60
+timeout = 2000
 bind = f":{os.environ.get('PORT', '8000')}"
 worker_class = "uvicorn.workers.UvicornWorker"
