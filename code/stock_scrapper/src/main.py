@@ -14,7 +14,7 @@ class Item(BaseModel):
     class Config:
         """Usage example."""
 
-        schema_extra  = {
+        schema_extra = {
             'example': {
                 'symbols': ['ITUB4', 'BIDI3']
             }
