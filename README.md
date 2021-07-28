@@ -1,10 +1,13 @@
-# Stock Scrapper
+# Stock Scrapper API
 
 An automated Stock Scrapper, made possible with python + selenium + FastAPI.
 
 It is just like searching for your stocks on Google, but automated.
 
 Under the hood, we have a python application navigating on Google, searching for your stocks.
+
+
+![](doc_screen.PNG)
 
 
 # Usage
