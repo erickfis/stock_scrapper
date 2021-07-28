@@ -18,7 +18,7 @@ app = FastAPI()
 @app.get('/')
 async def root() -> dict:
     """Root Endpoint."""
-    return {'msg': 'Welcome to Stock Scrapper API! Check the docs on /docs'}
+    return {'msg': 'Stock Scrapper API Jul-27! Check the docs on /docs'}
 
 
 @app.post('/predict_dummy')
