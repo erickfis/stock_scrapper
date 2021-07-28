@@ -4,7 +4,7 @@ Scrap stock data from google.
 Erick Medeiros Anastácio
 2020-09-12
 """
-
+import os
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 
@@ -26,7 +26,7 @@ def _get_element(driver, xpath):
     return element
 
 
-def get_stocks_value(stock_list, fx_bin=None):
+def get_stocks_value(stock_list: list, fx_bin=None) -> dict:
     """Get stock value from google.
 
     Parameters
@@ -41,22 +41,26 @@ def get_stocks_value(stock_list, fx_bin=None):
     list
         Where each item is a dict containing
         - 'stock': stock code
-        - 'valor': stock value
+        - 'value': stock value
 
     """
+    enviro = os.getenv('enviro', 'win')
+
     options = Options()
     options.headless = True
-    # fx_bin = '/usr/bin/firefox-esr'
 
-    driver = webdriver.Firefox(options=options, firefox_binary=fx_bin)
+    # driver = webdriver.Firefox(options=options, firefox_binary=fx_bin)
+    options.binary_location = r'C:\Users\EAnastacio\AppData\Local\Mozilla Firefox\firefox.exe'
+    executable_path = r'C:\Users\EAnastacio\Downloads\driver\geckodriver.exe'
+    if enviro == 'win':
+        driver = webdriver.Firefox(
+            executable_path=executable_path, options=options
+            )
+    else:
+        driver = webdriver.Firefox(options=options, firefox_binary=fx_bin)
+
     stock_values = [_get_one(driver, stock) for stock in stock_list]
     driver.quit()
-
-    # lista_chunks = [
-    #     stock_list[pos:pos+3] for pos in range(0, len(stock_list), 3)
-    #     ]
-    # # flattening
-    # stock_values = list(itertools.chain(*stock_values))
 
     return stock_values
 
@@ -87,4 +91,4 @@ def _get_one(driver, stock):
         # raise(e)
         valor = None
 
-    return {'stock': stock, 'valor': valor}
+    return {'stock': stock, 'value': valor}
