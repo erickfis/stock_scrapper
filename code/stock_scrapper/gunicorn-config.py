@@ -1,3 +1,5 @@
+"""Configuration for gunicorn."""
+
 import os
 
 timeout = 60

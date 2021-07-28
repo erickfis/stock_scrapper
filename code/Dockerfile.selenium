@@ -1,0 +1,14 @@
+# base image
+FROM python:3.9-slim-buster
+
+## Installing firefox and geckodriver
+RUN apt-get update && apt-get install -yq firefox-esr wget
+
+# GeckoDriver v0.29.1
+RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz" \
+    -O /tmp/geckodriver.tgz \
+    && tar zxf /tmp/geckodriver.tgz -C /usr/bin/ \
+    && rm /tmp/geckodriver.tgz
+
+# create symlinks to geckodriver (to the PATH)
+RUN ln -s /usr/bin/geckodriver && chmod 777 /usr/bin/geckodriver

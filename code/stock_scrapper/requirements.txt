@@ -49,5 +49,6 @@ uvicorn==0.13.4
 virtualenv==20.6.0
 watchgod==0.7
 websockets==8.1
-uvloop
+selenium
 httptools
+uvloop

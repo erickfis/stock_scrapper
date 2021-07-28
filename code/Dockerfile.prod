@@ -1,5 +1,5 @@
 # base image
-FROM python:3.9-slim-buster
+FROM erickfis/selenium_py3
 
 # install requirements
 WORKDIR /home/stock_scrapper/
@@ -13,6 +13,7 @@ EXPOSE 8000
 
 COPY stock_scrapper/gunicorn-config.py .
 
+ENV enviro=cloud
+
 # container startup cmd
-# CMD exec gunicorn main:app -c gunicorn-config.py
 cmd gunicorn main:app -c gunicorn-config.py
