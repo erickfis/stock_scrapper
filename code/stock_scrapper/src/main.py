@@ -11,6 +11,15 @@ class Item(BaseModel):
 
     symbols: list[str]
 
+    class Config:
+        """Usage example."""
+
+        schema_extra  = {
+            'example': {
+                'symbols': ['ITUB4', 'BIDI3']
+            }
+        }
+
 
 app = FastAPI()
 
