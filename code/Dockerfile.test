@@ -1,0 +1,17 @@
+# base image
+FROM erickfis/selenium_py3
+
+# install requirements
+WORKDIR /home/stock_scrapper/
+COPY stock_scrapper/requirements_test.txt .
+RUN pip3 install -r requirements_test.txt
+
+# cp app files
+COPY stock_scrapper/ .
+
+EXPOSE 8000
+
+ENV enviro=cloud
+
+# container startup cmd
+cmd tox

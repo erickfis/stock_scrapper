@@ -44,19 +44,19 @@ def get_stocks_value(stock_list: list, fx_bin=None) -> dict:
         - 'value': stock value
 
     """
-    enviro = os.getenv('enviro', 'win')
+    enviro = os.getenv('enviro', 'cloud')
 
     options = Options()
     options.headless = True
 
-    # driver = webdriver.Firefox(options=options, firefox_binary=fx_bin)
-    options.binary_location = r'C:\Users\EAnastacio\AppData\Local\Mozilla Firefox\firefox.exe'
-    executable_path = r'C:\Users\EAnastacio\Downloads\driver\geckodriver.exe'
     if enviro == 'win':
+        options.binary_location = r'C:\Users\EAnastacio\AppData\Local\Mozilla Firefox\firefox.exe'
+        executable_path = r'C:\Users\EAnastacio\Downloads\driver\geckodriver.exe'
         driver = webdriver.Firefox(
             executable_path=executable_path, options=options
             )
     else:
+        fx_bin = '/usr/bin/firefox-esr'
         driver = webdriver.Firefox(options=options, firefox_binary=fx_bin)
 
     stock_values = [_get_one(driver, stock) for stock in stock_list]
@@ -67,6 +67,7 @@ def get_stocks_value(stock_list: list, fx_bin=None) -> dict:
 
 def _get_one(driver, stock):
     try:
+        stock = stock.upper()
         print(f'getting {stock}')
         driver.get('http://www.google.com')
 

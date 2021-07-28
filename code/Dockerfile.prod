@@ -1,20 +1,6 @@
 # base image
-FROM python:3.9-slim-buster
+FROM erickfis/selenium_py3
 
-## Installing firefox and geckodriver
-RUN apt-get update && apt-get install -yq firefox-esr wget
-
-# GeckoDriver v0.29.1
-RUN wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.29.1/geckodriver-v0.29.1-linux64.tar.gz" \
-    -O /tmp/geckodriver.tgz \
-    && tar zxf /tmp/geckodriver.tgz -C /usr/bin/ \
-    && rm /tmp/geckodriver.tgz
-
-# create symlinks to geckodriver (to the PATH)
-RUN ln -s /usr/bin/geckodriver && chmod 777 /usr/bin/geckodriver
-
-
-## The app
 # install requirements
 WORKDIR /home/stock_scrapper/
 COPY stock_scrapper/requirements.txt .
@@ -27,6 +13,7 @@ EXPOSE 8000
 
 COPY stock_scrapper/gunicorn-config.py .
 
+ENV enviro=cloud
+
 # container startup cmd
-# CMD exec gunicorn main:app -c gunicorn-config.py
 cmd gunicorn main:app -c gunicorn-config.py
