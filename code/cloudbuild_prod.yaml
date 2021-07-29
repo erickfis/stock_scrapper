@@ -29,6 +29,25 @@ steps:
       - '--quiet'
     id: Deploy
     entrypoint: gcloud
+  # DOCKERHUB
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker login --username=$$USERNAME --password=$$PASSWORD']
+    secretEnv: ['USERNAME', 'PASSWORD']
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker build -t erickfis/stock-scrapper .']
+    secretEnv: ['USERNAME']
+  - name: 'gcr.io/cloud-builders/docker'
+    entrypoint: 'bash'
+    args: ['-c', 'docker push erickfis/stock-scrapper']
+    secretEnv: ['USERNAME']
+  availableSecrets:
+    secretManager:
+    - versionName: projects/$PROJECT_ID/secrets/docker-pass/versions/1
+      env: 'PASSWORD'
+    - versionName: projects/$PROJECT_ID/secrets/docker-username/versions/1
+      env: 'USERNAME'
 images:
   - '$_GCR_HOSTNAME/$PROJECT_ID/$REPO_NAME/$_SERVICE_NAME:$COMMIT_SHA'
 options:

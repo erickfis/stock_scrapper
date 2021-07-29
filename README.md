@@ -2,6 +2,8 @@
 
 An automated Stock Scrapper, made possible with python + selenium + FastAPI.
 
+This application will scrap the most recent value for a given stock symbol.
+
 It is just like searching for your stocks on Google, but automated.
 
 Under the hood, we have a python application navigating on Google, searching for your stocks.
