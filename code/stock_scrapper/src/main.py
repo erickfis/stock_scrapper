@@ -16,7 +16,7 @@ class Item(BaseModel):
 
         schema_extra = {
             'example': {
-                'symbols': ['VVAR3', 'GOOGL34']
+                'symbols': ['VVAR3', 'GOOGL34', 'AMER3']
             }
         }
 
