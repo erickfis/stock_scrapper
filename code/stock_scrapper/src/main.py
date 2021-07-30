@@ -1,6 +1,7 @@
 """The main module."""
 
 from fastapi import FastAPI
+from stock_scrapper import version
 from stock_scrapper.dummy.dummy_app import process_data
 from stock_scrapper.webcrawl.get_prices import get_stocks_value
 from pydantic import BaseModel
@@ -27,7 +28,7 @@ app = FastAPI()
 @app.get('/')
 async def root() -> dict:
     """Root Endpoint."""
-    return {'msg': 'Stock Scrapper API Jul-28! demo Mateus / Thiago'}
+    return {'msg': f'Stock Scrapper API - updated on {version.version}!'}
 
 
 @app.post('/predict_dummy')
