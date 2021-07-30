@@ -16,8 +16,11 @@ COPY stock_scrapper/gunicorn-config.py .
 ENV enviro=cloud
 
 # container startup cmd
-# 0 cmd gunicorn main:app -c gunicorn-config.py
+#cmd gunicorn main:app -c gunicorn-config.py
 # 1 teste gunicorn
 # 1cmd gunicorn --timeout 1000 --bind 0.0.0.0:8000 main:app
-# 2 - teste uvicorn
-cmd uvicorn main:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 20
+# 2 - teste uvicorn - ok local, falha no gcp run
+# cmd uvicorn main:app --host 0.0.0.0 --port 8000 --timeout-keep-alive 20
+# cmd gunicorn -w 4 -k uvicorn.workers.UvicornWorker --timeout 20 main:app
+
+cmd exec gunicorn --bind :$PORT --workers 1 --worker-class uvicorn.workers.UvicornWorker --threads 8 --timeout 2000 main:app
