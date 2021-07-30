@@ -1,0 +1,56 @@
+# CI-CD
+
+Integração Contínua - Deploy Contínuo
+
+
+## Pilares
+
+- Git
+- Pytest
+- Tox
+- Docker
+- Travis, CircleCI, Jenkins, GCP Build
+
+
+## Pytest
+
+Testes de lógica
+
+- funções e objetos entregam o esperado?
+- o dev deve escrever os testes apropriados
+- test coverage
+
+
+## TOX
+
+- automação de Tarefas
+- cria ambiente virtual isolado
+- permite testar o app em python2, python3
+- execução da rotinas:
+  - de teste
+  - de verificação de síntaxe
+  - de execução da aplicação
+
+
+## Docker
+
+- empacota a aplicação
+- mas empacota o OS também
+- permite configurar variáveis de ambiente
+- permite configurar ponto de entrada
+- gera imagens para deploy:
+  - AWS ElasticBeanStalk
+  - GCP Run
+  - Kubernetes
+
+
+## GCP Build
+
+Estrutura para automação:
+
+- máquina virtual, usa imagens docker
+- monitora o repositório, dispara gatilhos
+- instruções para
+  - executar testes
+  - se aprovados, fazer deploy
+  - reporta de volta para o repo
